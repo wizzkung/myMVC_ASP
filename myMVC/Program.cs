@@ -24,7 +24,7 @@ namespace myMVC
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Stars}/{id?}");
+                pattern: "{controller=HWDate}/{action=TwoDates}/{id?}");
 
             app.Run();
         }
