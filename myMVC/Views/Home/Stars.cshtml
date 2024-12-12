@@ -1,0 +1,52 @@
+﻿@{
+    var stars = ViewData["Stars"] as List<Stars>;
+}
+
+@if (stars != null && stars.Any())
+{
+    <select name="info">
+        @foreach (var s in stars)
+        {
+            <option value="@s.Id">@s.Name, id = @s.Id, Название = @s.Name</option>
+        }
+    </select>
+}
+else
+{
+    <p>Нет данных для отображения.</p>
+}
+
+<ul>
+    @foreach (var s in stars ?? new List<Stars>())
+    {
+        <li>@s.Name (ID: @s.Id)</li>
+    }
+</ul>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (stars != null && stars.Any())
+        {
+            @foreach (var s in stars)
+            {
+                <tr>
+                    <td>@s.Id</td>
+                    <td>@s.Name</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="2">Нет данных для отображения</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
