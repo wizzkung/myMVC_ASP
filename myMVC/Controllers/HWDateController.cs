@@ -1,10 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using myMVC.Models;
 using NuGet.Protocol;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace myMVC.Controllers
 {
     public class HWDateController : Controller
     {
+
+        IConfiguration configuration;
+        public HWDateController(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
         [HttpGet, Route("dates/{date1}/{date2}")]
         public IActionResult TwoDates(string date1, string date2)
         {
@@ -75,6 +85,46 @@ namespace myMVC.Controllers
             }
             string fileType = "image/png";
             return File(filePath, fileType, fileName);
+        }
+
+
+        [HttpGet, Route("cityexist/{city}")]
+        public IActionResult isCityExist(string city)
+        {
+            DataTable dt = new DataTable();
+            List<City> cities = new List<City>();
+            var con = configuration["db"];
+            using (SqlConnection sql = new SqlConnection(con))
+            {
+                sql.Open();
+                using (SqlCommand cmd = new SqlCommand("pGetAll", sql))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var c = new City
+                            {
+                                Id = reader.GetInt32(0),
+                                Name = reader.GetString(1)
+                            };
+                            cities.Add(c);
+                        }
+
+                    }
+
+                }
+                    sql.Close();
+            }
+            if(cities.Any(c => c.Name.Equals(city, StringComparison.OrdinalIgnoreCase)))
+            {
+                return StatusCode(200);
+            }
+            else
+            {
+                return StatusCode(401);
+            }
         }
     }
 }
