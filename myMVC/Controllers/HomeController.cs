@@ -31,35 +31,35 @@ namespace myMVC.Controllers
         {
             //ViewData["Step"] = "Hello STep";
             //ViewBag.world = "Hello World";
-            List<Student> students = new List<Student>
-{
-    new Student
-    {
-        Name = "Vasya",
-        StudentId = 1,
-        Id = 1
-    },
-    new Student
-    {
-        Name = "Petya",
-        StudentId = 2,
-        Id = 2
-    },
-    new Student
-    {
-        Name = "Masha",
-        StudentId = 3,
-        Id = 3
-    },
-    new Student
-    {
-        Name = "Dasha",
-        StudentId = 4,
-        Id = 4
-    }
-};
+//            List<Student> students = new List<Student>
+//{
+//    new Student
+//    {
+//        Name = "Vasya",
+//        StudentId = 1,
+//        Id = 1
+//    },
+//    new Student
+//    {
+//        Name = "Petya",
+//        StudentId = 2,
+//        Id = 2
+//    },
+//    new Student
+//    {
+//        Name = "Masha",
+//        StudentId = 3,
+//        Id = 3
+//    },
+//    new Student
+//    {
+//        Name = "Dasha",
+//        StudentId = 4,
+//        Id = 4
+//    }
+//};
 
-            ViewData["Student"] = students;
+            //ViewData["Student"] = students;
             return View();
         }
 

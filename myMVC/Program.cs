@@ -1,3 +1,6 @@
+using myMVC.Abstract;
+using myMVC.Services;
+
 namespace myMVC
 {
     public class Program
@@ -8,6 +11,8 @@ namespace myMVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<ICity, CityService>();
+            builder.Services.AddScoped<IStudent, StudentService>();
 
             var app = builder.Build();
 
@@ -24,7 +29,7 @@ namespace myMVC
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=HWDate}/{action=TwoDates}/{id?}");
+                pattern: "{controller=Student}/{action=ShowStudents}/{id?}");
 
             app.Run();
         }

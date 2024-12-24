@@ -3,22 +3,22 @@
     ViewData["Title"] = "Contacts";
 }
 
-@{
-//     <div>
-//     <p>Id: @s.Id</p>
-//     <p>Name: @s.Name</p>
-//     <p>StudentId: @s.StudentId</p>
-// </div>
-    var students = (List<Student>)ViewData["Student"];
+@* @{ *@
+@* //     <div> *@
+@* //     <p>Id: @s.Id</p> *@
+@* //     <p>Name: @s.Name</p> *@
+@* //     <p>StudentId: @s.StudentId</p> *@
+@* // </div> *@
+@* //     var students = (List<Student>)ViewData["Student"]; *@
 
 
-<select name="info">
-    @foreach (var s in students)
-    {
-        <option value="@s.Id">@s.Name, id = @s.StudentId, studentID = @s.Id</option>
-    }
-</select>
-}
+@* // <select name="info"> *@
+@* //     @foreach (var s in students) *@
+@* //     { *@
+@* //         <option value="@s.Id">@s.Name, id = @s.StudentId, studentID = @s.Id</option> *@
+@* //     } *@
+@* // </select> *@
+@* } *@
 
 
 @ViewBag.world

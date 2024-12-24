@@ -1,0 +1,39 @@
+﻿@model myMVC.Models.Student
+
+@{
+    ViewData["Title"] = "Удаление студента";
+}
+
+<h1>Удалить</h1>
+
+<h3>Вы уверены, что хотите удалить?</h3>
+<div>
+    <h4>Студент</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="ShowStudents">Вернуться</a>
+    </form>
+</div>
