@@ -14,7 +14,7 @@ namespace myMVC.Controllers
             this.service = service;
         }
 
-        public ActionResult ShowStudents()
+        public ActionResult Index()
         {
             return View(service.getAllStudents());
         }
@@ -38,12 +38,12 @@ namespace myMVC.Controllers
         {
             try
             {
-                 if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     return View(std);
                 }
-                 service.AddStudent(std);
-                return RedirectToAction(nameof(ShowStudents));
+                service.AddStudent(std);
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
@@ -75,37 +75,31 @@ namespace myMVC.Controllers
         // GET: StudentController/Delete/5
         public ActionResult Delete(int id)
         {
-            var std = service.GetStudent(id);
-            if(std == null)
-            {
-                return NotFound("Студент не найден");
-            }    
-            return View(std);
+            var result = service.GetStudent(id);
+            if (result != null)
+                return View(result);
+            return RedirectToAction(nameof(Index));
         }
 
-        // POST: StudentController/Delete/5
+        // POST: CityController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(Student model)
         {
             try
             {
-                var student = service.GetStudent(id); // Проверяем, существует ли объект
-                if (student == null)
+                if (model == null)
                 {
-                    return NotFound("Студент не найден."); // 404, если объект не найден
+                    Console.WriteLine($"Student with ID {model.Id} not found.");
+                    TempData["ErrorMessage"] = $"Student with ID {model.Id} not found.";
                 }
-
-                service.DeleteStudent(id); // Удаляем объект
-                TempData["SuccessMessage"] = "Студент успешно удален."; // Сообщение для пользователя
-                return RedirectToAction(nameof(ShowStudents)); // Перенаправляем на список студентов
+                service.DeleteStudent(model.Id);
+                return RedirectToAction(nameof(Index));
             }
-            catch (Exception ex)
+            catch
             {
-                ModelState.AddModelError("", "Ошибка при удалении студента."); // Добавляем сообщение об ошибке
-                return View(); // Возвращаем то же представление с ошибкой
+                return View();
             }
-
         }
     }
 }

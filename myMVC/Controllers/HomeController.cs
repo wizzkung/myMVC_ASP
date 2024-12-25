@@ -27,8 +27,8 @@ namespace myMVC.Controllers
             return View();
         }
 
-        public IActionResult Contacts()
-        {
+     //   public IActionResult Contacts()
+        //{
             //ViewData["Step"] = "Hello STep";
             //ViewBag.world = "Hello World";
 //            List<Student> students = new List<Student>
@@ -60,8 +60,8 @@ namespace myMVC.Controllers
 //};
 
             //ViewData["Student"] = students;
-            return View();
-        }
+         //   return View();
+       // }
 
         public IActionResult Stars()
         {

@@ -30,7 +30,7 @@ namespace myMVC.Services
             string connection = _configuration["db"];
             using (SqlConnection con = new SqlConnection(connection))
             {
-                var param = new { _id = id };
+                var param = new { Id = id };
                 con.Execute
                     ("pStudent;4", param, commandType: CommandType.StoredProcedure);
             }
@@ -51,8 +51,8 @@ namespace myMVC.Services
             string connection = _configuration["db"];
             using (SqlConnection con = new SqlConnection(connection))
             {
-                var param = new { id };
-                return con.QueryFirstOrDefault<Student>("pStudent;3", param, commandType: CommandType.StoredProcedure);
+                return con.Query<Student>("pStudent;3", new {Id = id }, commandType: CommandType.StoredProcedure).FirstOrDefault();
+
             }
         }
     }

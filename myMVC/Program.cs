@@ -11,7 +11,7 @@ namespace myMVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddScoped<ICity, CityService>();
+           // builder.Services.AddScoped<ICity, CityService>();
             builder.Services.AddScoped<IStudent, StudentService>();
 
             var app = builder.Build();
@@ -29,7 +29,7 @@ namespace myMVC
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Student}/{action=ShowStudents}/{id?}");
+                pattern: "{controller=Student}/{action=Index}/{id?}");
 
             app.Run();
         }
